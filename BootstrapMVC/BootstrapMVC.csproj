@@ -137,6 +137,9 @@
     <Content Include="Scripts\Lib\jquery-2.0.0.js" />
     <Content Include="Scripts\Lib\lodash.custom.js" />
     <Content Include="Scripts\Lib\modernizr.custom.js" />
+    <Content Include="Styles\admin.css" />
+    <Content Include="Styles\Images\glyphicons-halflings-white.png" />
+    <Content Include="Styles\Images\glyphicons-halflings.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -149,7 +152,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Styles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -171,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Messages.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\sass\admin.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -206,4 +211,20 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="CompileCss" Inputs="styles\sass\admin.scss" Outputs="styles\admin.css">
+    <Exec Command="powershell -noprofile -ExecutionPolicy ByPass -File &quot;$(SolutionDir)scripts\sass.ps1&quot; compile" />
+  </Target>
+  <Target Name="CleanCss">
+    <Delete Files="@(Sass->'styles\%(Filename).css')" />
+  </Target>
+  <PropertyGroup>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanCss;
+    </CleanDependsOn>
+    <BuildDependsOn>
+      $(BuildDependsOn);
+      CompileCss;
+    </BuildDependsOn>
+  </PropertyGroup>
 </Project>
