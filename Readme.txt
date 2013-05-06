@@ -13,6 +13,8 @@ Sätta upp projektet lokalt
 Installera ruby
 ---------------
 
+- Ladda ner från http://rubyinstaller.org/
+- Välj "Add ruby executables to your PATH" under installationen
 - Kör gem update --system
 - Kör gem install bundler
 - powershell Set-ExecutionPolicy RemoteSigned
@@ -21,6 +23,11 @@ Installera Git
 ---------------
 - Ladda ner från http://git-scm.com/
 - Välj "Run Git from the command prompt" i steget "Adjusting your PATH environment"
+
+Visual Studio
+---------------
+- Se till att nuget får ladda ner paket:
+- Gå in på tools/options/Package manager och kryssa i "Allow NuGet to download missing packages during build"
 
 
 För att bygga css-filer vid sparning
