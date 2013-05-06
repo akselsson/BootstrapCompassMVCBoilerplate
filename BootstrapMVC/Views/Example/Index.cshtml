@@ -1,2 +1,8 @@
-﻿
-<h2>Example 1</h2>
+﻿@model IEnumerable<AdS.WebAPI.Representations.Campaign.Campaign>
+<h2>Campaigns</h2>
+<ul>
+    @foreach (var campaign in Model)
+    {
+        <li>@campaign.CampaignTitle</li>
+    }
+</ul>
