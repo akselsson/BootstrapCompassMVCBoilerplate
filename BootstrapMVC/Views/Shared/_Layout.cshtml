@@ -1,0 +1,64 @@
+﻿@using System.Globalization
+@{
+    Bundles.Reference("head", "head");
+    Bundles.Reference("main", "main");
+    Bundles.Reference("debug-mode", "debug-mode");
+    Bundles.Reference("~/Styles");
+}
+
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName"><![endif]-->
+<!--[if gt IE 8 ]><html class="no-js ie ie9" lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName"><![endif]-->
+<!--[if !IE]><!-->
+<html class="no-js no-ie" lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
+<!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    
+    <meta name="robots" content="noindex, nofollow" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+    <meta name="format-detection" content="telephone=no">
+
+    @Bundles.RenderStylesheets()
+    @Bundles.RenderScripts("head")
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        @Bundles.RenderScripts("debug-mode")
+    }
+    @Bundles.RenderScripts("app")
+</head>
+<body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Adlibris.com</a>
+                <div class="nav-collapse collapse">
+                    
+                    @{Html.RenderPartial("TopMenu");}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+
+        @{Html.RenderPartial("Messages");}
+
+        @RenderBody()
+    </div>
+
+    @Bundles.RenderScripts("main")
+
+</body>
+</html>

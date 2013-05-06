@@ -1,0 +1,8 @@
+﻿<div class="messages">
+    @if (@TempData.ContainsKey("message"))
+    {
+        <div class="alert alert-info">
+            @TempData["message"]
+        </div>
+    }
+</div>

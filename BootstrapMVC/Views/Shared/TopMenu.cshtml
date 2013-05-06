@@ -1,0 +1,11 @@
+﻿@helper CssClass(string action)
+{
+    if (this.ViewContext.Controller.GetType().Name.Replace("Controller", "") == action)
+    {
+    <text>active</text>
+    }
+}
+
+<ul class="nav">
+    <li class="@CssClass("Example")"><a href="@Url.Action("Index", "Example")">Example 1</a></li>
+</ul>
